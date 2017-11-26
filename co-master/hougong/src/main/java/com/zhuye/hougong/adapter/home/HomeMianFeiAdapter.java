@@ -10,10 +10,10 @@ import java.util.List;
  * Created by zzzy on 2017/11/22.
  */
 
-public class HomeTuiJianAdapter extends HomeBaseAdapter {
+public class HomeMianFeiAdapter extends HomeBaseAdapter {
 
 
-    public HomeTuiJianAdapter(Context conn, List data) {
+    public HomeMianFeiAdapter(Context conn, List data) {
         super(conn, data);
     }
 

@@ -10,20 +10,15 @@ import java.util.List;
  * Created by zzzy on 2017/11/22.
  */
 
-public class FindZuiXinAdapter extends FindBaseAdapter {
+public class FindGuanZhuAdapter extends FindBaseAdapter {
 
 
-    public FindZuiXinAdapter(Context conn, List data) {
+    public FindGuanZhuAdapter(Context conn, List data) {
         super(conn, data);
     }
 
     @Override
     protected void conver(BaseHolder holder, int position) {
 
-    }
-
-    @Override
-    public void setOnItemClickListener(BaseHolder.OnItemClickListener onItemClickListener) {
-        super.setOnItemClickListener(onItemClickListener);
     }
 }

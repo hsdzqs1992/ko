@@ -8,6 +8,7 @@ import android.view.View;
 import com.cjj.MaterialRefreshLayout;
 import com.zhuye.hougong.R;
 import com.zhuye.hougong.adapter.BaseHolder;
+import com.zhuye.hougong.adapter.find.FindBaseAdapter;
 import com.zhuye.hougong.adapter.find.FindZuiXinAdapter;
 import com.zhuye.hougong.base.BaseFragment;
 import com.zhuye.hougong.view.PingLunActivity;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 
 public class BaseFindFragment extends BaseFragment {
+
 
     MaterialRefreshLayout materialRefreshLayout;
     RecyclerView recyclerView;

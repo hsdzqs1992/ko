@@ -116,6 +116,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/find_zuixin_pinglun"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="16dp">
@@ -129,7 +130,6 @@
                 android:textColor="#aaaaaa"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:id="@+id/find_zuixin_pinglun"
                 android:text="评论"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

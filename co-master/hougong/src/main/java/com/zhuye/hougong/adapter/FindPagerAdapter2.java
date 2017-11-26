@@ -1,6 +1,7 @@
 package com.zhuye.hougong.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +10,12 @@ import android.view.ViewGroup;
 
 import com.cjj.MaterialRefreshLayout;
 import com.zhuye.hougong.R;
+import com.zhuye.hougong.adapter.find.FindBaseAdapter;
+import com.zhuye.hougong.adapter.find.FindGuanZhuAdapter;
+import com.zhuye.hougong.adapter.find.FindTongChengAdapter;
 import com.zhuye.hougong.adapter.find.FindZuiXinAdapter;
-import com.zhuye.hougong.base.BaseFragment;
 import com.zhuye.hougong.bean.HomeBanner;
+import com.zhuye.hougong.view.PingLunActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +29,8 @@ public class FindPagerAdapter2 extends PagerAdapter {
 
     private  Context conn;
     private List<String> titles = new ArrayList<>();
-    private List<BaseFragment> fargments = new ArrayList<>();
+    List<FindBaseAdapter> mAdapters = new ArrayList<>(3);
+
 
     HomeBanner homeBanner;
 
@@ -34,6 +39,9 @@ public class FindPagerAdapter2 extends PagerAdapter {
         titles.add("最新");
         titles.add("关注");
         titles.add("同城");
+        mAdapters.add(new FindZuiXinAdapter(conn,titles));
+        mAdapters.add(new FindGuanZhuAdapter(conn,titles));
+        mAdapters.add(new FindTongChengAdapter(conn,titles));
 
 //        fargments.add(new ZuiXinFragment());
 //        fargments.add(new GuanZhuFragment());
@@ -75,13 +83,31 @@ public class FindPagerAdapter2 extends PagerAdapter {
             materialRefreshLayout = view.findViewById(R.id.common_material);
             recyclerView = view.findViewById(R.id.commot_recycle);
             //BaseFindFragment messageXiaoXi = (BaseFindFragment) fargments.get(position);
-            messageXiaoXi = new FindZuiXinAdapter(conn,titles);
-            recyclerView.setAdapter(messageXiaoXi);
+            //messageXiaoXi = new FindZuiXinAdapter(conn,titles);
+            FindBaseAdapter findBaseAdapter = mAdapters.get(position);
+            recyclerView.setAdapter(findBaseAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(conn));
             // initView();
             //paihangThree = view.findViewById(R.id.paihang_three);
             container.addView(view);
+            initListener();
             return view;
+    }
+
+    private void initListener() {
+
+        mAdapters.get(0).setOnItemClickListener(new BaseHolder.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+               // CommentUtils.toast(conn,"点击最新了");
+                view.findViewById(R.id.find_zuixin_pinglun).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        conn.startActivity(new Intent(conn, PingLunActivity.class));
+                    }
+                });
+            }
+        });
     }
 
     @Override

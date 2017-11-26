@@ -18,10 +18,10 @@ import com.zhuye.hougong.utils.CommentUtils;
 import com.zhuye.hougong.utils.SpUtils;
 import com.zhuye.hougong.view.FansActivity;
 import com.zhuye.hougong.view.GuanZhuActivity;
+import com.zhuye.hougong.view.LoginActivity;
 import com.zhuye.hougong.view.LookMeActivity;
 import com.zhuye.hougong.view.MyFriendsActivity;
 import com.zhuye.hougong.view.MyWaletActivity;
-import com.zhuye.hougong.view.PersonDetailActivity;
 import com.zhuye.hougong.view.SettingsActivity;
 import com.zhuye.hougong.view.ShengVIP1Activity;
 import com.zhuye.hougong.view.WhoSendLiWuActivity;
@@ -152,8 +152,9 @@ public class MeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String token = SpUtils.getString(getActivity(), "token", "");
+                startActivity(new Intent(getActivity(), LoginActivity.class));
 
-                startActivity(new Intent(getActivity(), PersonDetailActivity.class));
+               // startActivity(new Intent(getActivity(), PersonDetailActivity.class));
                 return;
 //                if (TextUtils.isEmpty(token)) {
 //

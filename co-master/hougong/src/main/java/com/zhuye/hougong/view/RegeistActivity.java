@@ -12,12 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.zhuye.hougong.R;
 import com.zhuye.hougong.bean.Code;
 import com.zhuye.hougong.contants.Contants;
+import com.zhuye.hougong.utils.CommentUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -106,19 +109,39 @@ public class RegeistActivity extends AppCompatActivity {
                     return;
                 }
 
-                OkGo.<String>post(Contants.REGEIST_URL).params("mobile", phone)
-                        .params("password", pass)
-                        .params("code", regeistYanzhengma1)
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
+                try {
+                    EMClient.getInstance().createAccount(phone,pass);
+                    startActivity(new Intent(RegeistActivity.this, LoginActivity.class));
+                    CommentUtils.toast(RegeistActivity.this,"注册成功");
+                    finish();
+                } catch (HyphenateException e) {
+                    CommentUtils.toast(RegeistActivity.this,"注册失败"+e.getMessage());
+                    //e.printStackTrace();
+                }
 
-                                //JsonObject jsonObject = new JsonObject();
-                                //JsonObject s = jsonObject.getAsJsonObject(response.body());
-                                //s.get("Code");
-                                Toast.makeText(RegeistActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(RegeistActivity.this, LoginActivity.class));
-                                finish();
+//                startActivity(new Intent(RegeistActivity.this, LoginActivity.class));
+//                finish();
+
+
+                //regeistFromServer();
+                break;
+        }
+    }
+
+    private void regeistFromServer() {
+        OkGo.<String>post(Contants.REGEIST_URL).params("mobile", phone)
+                .params("password", pass)
+                .params("code", regeistYanzhengma1)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+
+                        //JsonObject jsonObject = new JsonObject();
+                        //JsonObject s = jsonObject.getAsJsonObject(response.body());
+                        //s.get("Code");
+                        Toast.makeText(RegeistActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegeistActivity.this, LoginActivity.class));
+                        finish();
 
 //                                Gson gson = new Gson();
 //                                Code code = gson.fromJson(response.body(), Code.class);
@@ -129,14 +152,12 @@ public class RegeistActivity extends AppCompatActivity {
 //                                }else {
 //                                    Toast.makeText(RegeistActivity.this,"获取验证码失败",Toast.LENGTH_SHORT).show();
 //                                }
-                            }
+                    }
 
-                            @Override
-                            public void onError(Response<String> response) {
-                                super.onError(response);
-                            }
-                        });
-                break;
-        }
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                    }
+                });
     }
 }

@@ -26,3 +26,6 @@
 #okgo
 -dontwarn com.lzy.okgo.**
 -keep class com.lzy.okgo.**{*;}
+
+-keep class com.hyphenate.** {*;}
+-dontwarn  com.hyphenate.**
