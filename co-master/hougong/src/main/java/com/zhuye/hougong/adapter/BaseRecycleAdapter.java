@@ -68,4 +68,6 @@ public abstract class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseHol
 //    }
 
 
+
+
 }
