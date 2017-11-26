@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 
 import com.zhuye.hougong.R;
-import com.zhuye.hougong.adapter.FindPagerAdapter;
+import com.zhuye.hougong.adapter.FindPagerAdapter2;
 import com.zhuye.hougong.base.BaseFragment;
 import com.zhuye.hougong.weidgt.PagerSlidingTabStrip;
 
@@ -32,7 +32,7 @@ public class FindFragment extends BaseFragment {
         mTabStrip.setTextSize(getResources().getDimensionPixelSize(R.dimen.h8));
         mTabStrip.setTextSelectedSize(getResources().getDimensionPixelSize(R.dimen.h10));
         mTabStrip.setUnderlineHeight(1);
-        mviewpager.setAdapter(new FindPagerAdapter(getActivity().getSupportFragmentManager()));
+        mviewpager.setAdapter(new FindPagerAdapter2(getActivity()));
         mTabStrip.setViewPager(mviewpager);
 
 

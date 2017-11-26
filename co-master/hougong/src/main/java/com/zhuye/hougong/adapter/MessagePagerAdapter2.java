@@ -28,11 +28,14 @@ public class MessagePagerAdapter2 extends PagerAdapter {
     private List<BaseFragment> fargments = new ArrayList<>();
 
     HomeBanner homeBanner;
-    List<String> titles;
-    public MessagePagerAdapter2(Context con, List<String> titles) {
-
+    List<String> mtitles = new ArrayList<>();
+    public MessagePagerAdapter2(Context con) {
         conn = con;
-        this.titles = titles;
+        //this.titles = titles;
+        //if (mtitles!=null && mtitles.)
+       // mtitles.
+        mtitles.add("消息");
+        mtitles.add("通话");
 
     }
 
@@ -56,7 +59,7 @@ public class MessagePagerAdapter2 extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return titles.size();
+        return mtitles.size();
     }
 
     @Override
@@ -71,10 +74,10 @@ public class MessagePagerAdapter2 extends PagerAdapter {
         materialRefreshLayout = view.findViewById(R.id.common_material);
 
         recyclerView = view.findViewById(R.id.commot_recycle);
-        messageXiaoXi = new MessageXiaoXi(conn,titles);
+        messageXiaoXi = new MessageXiaoXi(conn,mtitles);
         recyclerView.setAdapter(messageXiaoXi);
         recyclerView.setLayoutManager(new LinearLayoutManager(conn));
-        initView();
+       // initView();
         //paihangThree = view.findViewById(R.id.paihang_three);
         container.addView(view);
         return view;
@@ -89,14 +92,8 @@ public class MessagePagerAdapter2 extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return titles.get(position);
+        return mtitles.get(position);
     }
 
-    public void initView(){
-        if (recyclerView!=null){
-            recyclerView.setAdapter(messageXiaoXi);
-            recyclerView.setLayoutManager(new LinearLayoutManager(conn));
-        }
 
-    };
 }

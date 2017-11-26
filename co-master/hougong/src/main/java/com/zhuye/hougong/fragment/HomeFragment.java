@@ -17,7 +17,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.mikepenz.materialdrawer.Drawer;
 import com.zhuye.hougong.R;
-import com.zhuye.hougong.adapter.HomePagerAdapter;
+import com.zhuye.hougong.adapter.HomePagerAdapter2;
 import com.zhuye.hougong.base.BaseFragment;
 import com.zhuye.hougong.bean.HomeBanner;
 import com.zhuye.hougong.contants.Contants;
@@ -60,7 +60,7 @@ public class HomeFragment extends BaseFragment {
     //private MyToolbar myToolbar;
     private ViewPager mviewpager;
     private PagerSlidingTabStrip mTabStrip;
-    HomePagerAdapter homePagerAdapter;
+    HomePagerAdapter2 homePagerAdapter;
     ImageView search;
     Drawer drawer;
     DrawerLayout mDrawerLayout;
@@ -98,7 +98,7 @@ public class HomeFragment extends BaseFragment {
         //myToolbar = rootView.findViewById(R.id.home_toolbar);
 
         //initToolBar();
-        homePagerAdapter = new HomePagerAdapter(getActivity().getSupportFragmentManager());
+        homePagerAdapter = new HomePagerAdapter2(getActivity());
 
         mviewpager.setAdapter(homePagerAdapter);
         mviewpager.setOffscreenPageLimit(0);
@@ -133,7 +133,7 @@ public class HomeFragment extends BaseFragment {
                         Gson gson = new Gson();
                         HomeBanner homeBanner = gson.fromJson(response.body(), HomeBanner.class);
                         Log.d("------", homeBanner.toString());
-                        homePagerAdapter.setData(homeBanner);
+                       // homePagerAdapter.setData(homeBanner);
 
 
                     }
